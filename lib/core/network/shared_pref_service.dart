@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CacheHelper {
+class SharedPrefService {
 
   static setString(key,String value) async {
     SharedPreferences pref;
