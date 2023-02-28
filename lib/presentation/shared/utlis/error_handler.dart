@@ -1,5 +1,5 @@
+import 'package:bloc_architecture/presentation/shared/utlis/toast_message.dart';
 import 'package:flutter/material.dart';
-import 'package:your_parts/presentation/shared/utlis/toast_message.dart';
 
 import '../../../core/error/exceptions.dart';
 import '../../../core/strings/failures.dart';

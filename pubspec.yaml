@@ -1,5 +1,5 @@
-name: your_parts
-description: car parts online shop mobile application.
+name: bloc_architecture
+description: The BLoC (Business Logic Components) is a design pattern that allows developers to separate the business logic and presentation layers of their Flutter app. This separation of concerns helps improve the overall structure and maintainability of the code. It eases the testing and scaling of the app over time.
 
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -18,7 +18,6 @@ dependencies:
   http:
   internet_connection_checker:
   cupertino_icons:
-  fluttertoast:
   flutter_native_splash:
   flutter_launcher_icons:
   rxdart: ^0.27.7
