@@ -1,16 +1,4 @@
-# flutter_mvc_skeleton
+# bloc_architecture
 
-Skeleton for flutter using MVC design pattern.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The BLoC (Business Logic Components) is a design pattern that allows developers to separate the business logic and presentation layers of their Flutter app. This separation of concerns helps improve the overall structure and maintainability of the code. It eases the testing and scaling of the app over time.
+![bloc_architecture_full](https://user-images.githubusercontent.com/86858301/221726535-a5dffa05-a318-4c6a-b99c-226603ad9ccd.png)
