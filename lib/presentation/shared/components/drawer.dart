@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:your_parts/views/shared/components/seperator.dart';
 
 import 'list_tile.dart';
 
@@ -16,7 +14,7 @@ class DrawerWidget extends StatelessWidget {
               context: context,
               title: _itemCountList[index]['title'],
               route: _itemCountList[index]['route']),
-          separatorBuilder: (context, index) => Seperator.sizedBox(),
+          separatorBuilder: (context, index) => const Divider(),
           itemCount: _itemCountList.length),
     );
   }
