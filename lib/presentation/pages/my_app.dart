@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 import '../shared/themes/dark_theme.dart';
 import '../shared/themes/light_theme.dart';
-import 'my_home_page.dart';
+import 'my_home/my_home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

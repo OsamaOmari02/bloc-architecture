@@ -1,4 +1,5 @@
 part of 'first_bloc.dart';
 
-@immutable
-abstract class FirstEvent {}
+abstract class FirstEvent extends Equatable {
+  const FirstEvent();
+}

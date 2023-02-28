@@ -1,7 +1,7 @@
-import 'dart:async';
 
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:equatable/equatable.dart';
 
 part 'first_event.dart';
 part 'first_state.dart';

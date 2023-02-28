@@ -1,4 +1,4 @@
-part of 'first_bloc.dart';
+part of 'first_cubit.dart';
 
 abstract class FirstState extends Equatable {
   const FirstState();

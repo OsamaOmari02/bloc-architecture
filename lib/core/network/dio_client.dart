@@ -2,16 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../constants.dart';
+import '../interceptors/token_interceptor.dart';
+
 class DioClient {
   final Dio _dio = Dio();
 
   DioClient() {
-    // _dio
-    //   ..options.baseUrl = APIEndPoints.baseUrl
-    //   ..options.connectTimeout = APIEndPoints.connectionTimeout
-    //   ..options.receiveTimeout = APIEndPoints.receiveTimeout
-    //   ..options.responseType = ResponseType.json
-    //   ..interceptors.add(TokenInterceptor());
+    _dio
+      ..options.baseUrl = APIEndPoints.baseUrl
+      ..options.connectTimeout = APIEndPoints.connectionTimeout
+      ..options.receiveTimeout = APIEndPoints.receiveTimeout
+      ..options.responseType = ResponseType.json
+      ..interceptors.add(TokenInterceptor());
   }
 
   Dio get dio => _dio;
@@ -119,12 +122,11 @@ class DioClient {
         Map<String, dynamic> queryParams = const {}]) async {
     dynamic responseJson;
     try {
-      // final response =
-      // await _dio.patch(APIEndPoints.baseUrl + path, data: requestBody);
-      // responseJson = _returnResponse(response as http.Response);
+      final response =
+      await _dio.patch(APIEndPoints.baseUrl + path, data: requestBody);
+      responseJson = _returnResponse(response as http.Response);
     } on DioError catch (e) {
-      // final errorMessage = DioException.fromDioError(e).toString();
-      // throw errorMessage;
+      rethrow;
     }
     return responseJson;
   }

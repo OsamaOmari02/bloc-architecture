@@ -1,17 +1,21 @@
+import 'dart:convert';
 
+import 'package:bloc_architecture/data/entites/initial_entity.dart';
 
-class ModelName {
+class ModelName extends EntityName {
   ModelName({
-    required this.name,
+    required super.name,
   });
 
-  final String name;
-
-  factory ModelName.fromJson(Map<String, dynamic> json) => ModelName(
-    name: json["name"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "name": name,
-  };
+  factory ModelName.fromJson(String jsonString) {
+    final jsonData = json.decode(jsonString);
+    return ModelName(
+      name: jsonData['name'],
+    );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      "name": name,
+    };
+  }
 }
