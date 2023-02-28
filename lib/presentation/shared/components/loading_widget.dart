@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shifacom/core/utlis/media_query.dart';
+
+import '../utlis/media_query.dart';
 
 
 class LoadingWidget extends StatelessWidget {

@@ -1,16 +1,17 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:shifacom/core/utlis/error_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../strings/messages.dart';
+import '../../../core/strings/failures.dart';
+import 'error_handler.dart';
 
-class LaunchUrlServices {
+
+class LaunchUrlService {
   static void goToWeb(BuildContext context, url) async {
     try {
-      final Uri address = Uri.parse(url);
-      if (!await launchUrl(address)) {
+      final Uri uri = Uri.parse(url);
+      if (!await launchUrl(uri)) {
         showErrorToast(context, ERROR_OCCURRED);
       }
     } catch (e) {
@@ -20,8 +21,8 @@ class LaunchUrlServices {
 
   static void makeAPhoneCall(BuildContext context, phoneNumber) async {
     try {
-      final Uri phoneUrl = Uri(scheme: 'tel', path: phoneNumber);
-      if (!await launchUrl(phoneUrl)) {
+      final Uri phoneUri = Uri(scheme: 'tel', path: phoneNumber);
+      if (!await launchUrl(phoneUri)) {
         errorHandler(context, ERROR_OCCURRED);
       }
     } catch (e) {

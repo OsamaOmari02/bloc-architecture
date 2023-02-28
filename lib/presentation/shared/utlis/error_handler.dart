@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shifacom/core/error/exceptions.dart';
-import 'package:shifacom/core/strings/failures.dart';
-import 'package:shifacom/core/utlis/toast_message.dart';
+import 'package:your_parts/presentation/shared/utlis/toast_message.dart';
+
+import '../../../core/error/exceptions.dart';
+import '../../../core/strings/failures.dart';
 
 void showErrorToast(BuildContext context, errorMessage) {
   ToastMessage.showErrorToastMessage(msg: errorMessage, context: context);

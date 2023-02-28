@@ -22,10 +22,13 @@ dependencies:
   flutter_native_splash:
   flutter_launcher_icons:
   rxdart: ^0.27.7
+  auto_size_text: 
   retry: ^3.1.0
   localstorage: ^4.0.0+1
   dio: ^4.0.6
   flutter_bloc: ^8.1.2
+  url_launcher: ^6.1.10
+  toast: ^0.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
