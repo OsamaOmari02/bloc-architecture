@@ -6,12 +6,12 @@ class FloatingActionButtonWidget extends StatelessWidget {
       : super(key: key);
 
   final String title;
-  final Function onPressed;
+  final onPressed;
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () => onPressed,
+      onPressed: onPressed,
       child: Text(title),
     );
   }

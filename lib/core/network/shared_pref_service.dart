@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPrefService {
   static late SharedPreferences _prefs;
 
+  SharedPreferences get pref => _prefs;
+
   static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
   }

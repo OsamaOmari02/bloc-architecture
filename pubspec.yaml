@@ -27,6 +27,7 @@ dependencies:
   hive_flutter:
   dio:
   flutter_bloc:
+  bloc:
   equatable: 
   url_launcher:
   toast:

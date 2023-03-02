@@ -13,6 +13,7 @@ class DioClient {
       ..options.baseUrl = APIEndPoints.baseUrl
       ..options.connectTimeout = APIEndPoints.connectionTimeout
       ..options.receiveTimeout = APIEndPoints.receiveTimeout
+      ..options.sendTimeout = APIEndPoints.sendTimeout
       ..options.responseType = ResponseType.json
       ..interceptors.add(TokenInterceptor());
   }
@@ -35,7 +36,7 @@ class DioClient {
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
-      return response;
+      return _returnResponse(response as http.Response);
     } catch (e) {
       rethrow;
     }
@@ -59,7 +60,7 @@ class DioClient {
         options: options,
         cancelToken: cancelToken,
       );
-      return response.data;
+      return _returnResponse(response as http.Response);
     } catch (e) {
       rethrow;
     }
@@ -85,7 +86,7 @@ class DioClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return response;
+      return _returnResponse(response as http.Response);
     } catch (e) {
       rethrow;
     }
@@ -111,24 +112,36 @@ class DioClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return response;
+      return _returnResponse(response as http.Response);
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<dynamic> patch(String path,
-      [Object? requestBody,
-        Map<String, dynamic> queryParams = const {}]) async {
-    dynamic responseJson;
+  // Patch:---------------------------------------------------------------------
+  Future<Response> patch(
+      String url, {
+        data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress,
+      }) async {
     try {
-      final response =
-      await _dio.patch(APIEndPoints.baseUrl + path, data: requestBody);
-      responseJson = _returnResponse(response as http.Response);
-    } on DioError catch (e) {
+      final Response response = await _dio.patch(
+        url,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return _returnResponse(response as http.Response);
+    } catch (e) {
       rethrow;
     }
-    return responseJson;
   }
 
   dynamic _returnResponse(http.Response response) {
