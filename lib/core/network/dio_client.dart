@@ -1,3 +1,4 @@
+import 'package:bloc_architecture/core/network/network_info.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -6,22 +7,24 @@ import '../constants.dart';
 import '../interceptors/token_interceptor.dart';
 
 class DioClient {
-  final Dio _dio = Dio();
+  static final Dio _dio = Dio();
 
-  DioClient() {
+  static void init() {
     _dio
       ..options.baseUrl = APIEndPoints.baseUrl
       ..options.connectTimeout = APIEndPoints.connectionTimeout
       ..options.receiveTimeout = APIEndPoints.receiveTimeout
       ..options.sendTimeout = APIEndPoints.sendTimeout
       ..options.responseType = ResponseType.json
+      ..options.headers = {
+        'Content-Type': 'application/json',
+        'Accept-Language': 'ar'
+      }
       ..interceptors.add(TokenInterceptor());
   }
 
-  Dio get dio => _dio;
-
   // Get:-----------------------------------------------------------------------
-  Future<Response> get(
+  static Future<Response> get(
       String url, {
         Map<String, dynamic>? queryParameters,
         Options? options,
@@ -29,6 +32,7 @@ class DioClient {
         ProgressCallback? onReceiveProgress,
       }) async {
     try {
+      await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.get(
         url,
         queryParameters: queryParameters,
@@ -43,7 +47,7 @@ class DioClient {
   }
 
   // Delete:--------------------------------------------------------------------
-  Future<dynamic> delete(
+  static Future<dynamic> delete(
       String url, {
         data,
         Map<String, dynamic>? queryParameters,
@@ -53,6 +57,7 @@ class DioClient {
         ProgressCallback? onReceiveProgress,
       }) async {
     try {
+      await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.delete(
         url,
         data: data,
@@ -67,7 +72,7 @@ class DioClient {
   }
 
   // Post:----------------------------------------------------------------------
-  Future<Response> post(
+  static Future<Response> post(
       String url, {
         data,
         Map<String, dynamic>? queryParameters,
@@ -77,6 +82,7 @@ class DioClient {
         ProgressCallback? onReceiveProgress,
       }) async {
     try {
+      await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.post(
         url,
         data: data,
@@ -93,7 +99,7 @@ class DioClient {
   }
 
   // Put:-----------------------------------------------------------------------
-  Future<Response> put(
+  static Future<Response> put(
       String url, {
         data,
         Map<String, dynamic>? queryParameters,
@@ -103,6 +109,7 @@ class DioClient {
         ProgressCallback? onReceiveProgress,
       }) async {
     try {
+      await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.put(
         url,
         data: data,
@@ -119,7 +126,7 @@ class DioClient {
   }
 
   // Patch:---------------------------------------------------------------------
-  Future<Response> patch(
+  static Future<Response> patch(
       String url, {
         data,
         Map<String, dynamic>? queryParameters,
@@ -129,6 +136,7 @@ class DioClient {
         ProgressCallback? onReceiveProgress,
       }) async {
     try {
+      await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.patch(
         url,
         data: data,
@@ -144,7 +152,7 @@ class DioClient {
     }
   }
 
-  dynamic _returnResponse(http.Response response) {
+  static dynamic _returnResponse(http.Response response) {
     return json.decode(response.body.toString());
   }
 }

@@ -1,3 +1,4 @@
+import "package:bloc_architecture/core/dio_errors/no_internet_exception.dart";
 import "package:bloc_architecture/core/network/hive_service.dart";
 import "package:dio/dio.dart";
 
@@ -7,21 +8,18 @@ import "../dio_errors/deadline_exceeded_exception.dart";
 import "../dio_errors/internal_server_exception.dart";
 import "../dio_errors/not_found_exception.dart";
 import "../dio_errors/unauthorized_exception.dart";
+import "../dio_errors/unknown_exception.dart";
 
 class TokenInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final token = HiveService.getData('token');
-
     options.headers['Authorization'] = 'Bearer $token';
-    options.headers['Accept-Language'] = 'ar';
-
     super.onRequest(options, handler);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    print(err.error);
     switch (err.type) {
       case DioErrorType.connectionTimeout:
       case DioErrorType.sendTimeout:
@@ -41,6 +39,10 @@ class TokenInterceptor extends Interceptor {
             throw InternalServerErrorException(err.requestOptions);
         }
         break;
+      case DioErrorType.connectionError:
+        throw NoInternetConnectionException(err.requestOptions);
+      case DioErrorType.unknown:
+        throw UnknownException(err.requestOptions);
       case DioErrorType.cancel:
         break;
       default:
