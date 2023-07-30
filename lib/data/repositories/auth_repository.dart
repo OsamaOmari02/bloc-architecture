@@ -20,5 +20,6 @@ class AuthRepository {
       ToastMessage.showErrorToastMessage(
           context: context, msg: error.toString());
     }
+
   }
 }
