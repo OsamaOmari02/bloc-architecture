@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../constants.dart';
+import '../../data/constants/api_constants.dart';
 import '../interceptors/token_interceptor.dart';
 
 class DioClient {

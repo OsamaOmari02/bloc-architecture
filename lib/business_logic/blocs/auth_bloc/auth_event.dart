@@ -9,8 +9,11 @@ class LoginEvent extends AuthEvent {
   final String password;
   final BuildContext context;
 
-  const LoginEvent(
-      {required this.context, required this.email, required this.password});
+  const LoginEvent({
+    required this.context,
+    required this.email,
+    required this.password,
+  });
 
   @override
   List<Object?> get props => [email, password];

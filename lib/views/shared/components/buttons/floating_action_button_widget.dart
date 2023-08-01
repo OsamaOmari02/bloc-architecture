@@ -1,6 +1,7 @@
 import 'package:bloc_architecture/views/shared/components/text_widget.dart';
-import 'package:bloc_architecture/views/shared/utlis/media_query.dart';
 import 'package:flutter/material.dart';
+
+import '../../utlis/media_query_util.dart';
 
 class FloatingActionButtonWidget extends StatelessWidget {
   const FloatingActionButtonWidget(

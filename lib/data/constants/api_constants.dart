@@ -3,7 +3,7 @@ class APIEndPoints {
   static int receiveTimeout = const Duration(hours: 1).inMilliseconds;
   static int sendTimeout = const Duration(minutes: 5).inMilliseconds;
 
-  static const String baseUrl = 'https://be.git3com.com';
+  static const String baseUrl = '';
 
   //---------------auth
   static const String login = '/api/auth/login-user';

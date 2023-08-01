@@ -1,17 +1,16 @@
 import 'package:bloc_architecture/business_logic/blocs/auth_bloc/auth_bloc.dart';
-import 'package:bloc_architecture/views/shared/components/buttons/floating_action_button.dart';
-import 'package:bloc_architecture/views/shared/components/text_widget.dart';
-import 'package:bloc_architecture/views/shared/utlis/media_query.dart';
+import 'package:bloc_architecture/views/shared/components/app_bar_widget.dart';
+import 'package:bloc_architecture/views/shared/components/buttons/floating_action_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const SharedAppBarWidget(text: ""),
       body: Center(
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {

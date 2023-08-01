@@ -1,7 +1,8 @@
 
 
-import 'package:bloc_architecture/core/strings/failures.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+
+import '../strings/failures_messages.dart';
 
 
 

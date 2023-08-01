@@ -1,3 +1,4 @@
+import 'package:bloc_architecture/core/strings/failures_messages.dart';
 import 'package:dio/dio.dart';
 
 class NoInternetConnectionException extends DioError {
@@ -5,6 +6,6 @@ class NoInternetConnectionException extends DioError {
 
   @override
   String toString() {
-    return 'No internet connection detected, please try again.';
+    return OFFLINE_FAILURE_MESSAGE;
   }
 }

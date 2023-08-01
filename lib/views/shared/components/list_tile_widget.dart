@@ -4,7 +4,7 @@
 import 'package:bloc_architecture/views/shared/components/text_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../utlis/media_query.dart';
+import '../utlis/media_query_util.dart';
 
 
 class ListTileWidget extends StatelessWidget {
