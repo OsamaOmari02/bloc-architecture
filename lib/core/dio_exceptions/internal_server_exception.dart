@@ -1,3 +1,4 @@
+import 'package:bloc_architecture/core/strings/failures_messages.dart';
 import 'package:dio/dio.dart';
 
 class InternalServerErrorException extends DioError {
@@ -5,6 +6,6 @@ class InternalServerErrorException extends DioError {
 
   @override
   String toString() {
-    return 'Unknown error occurred, please try again later.';
+    return INTERNAL_SERVER_ERROR_FAILURE_MESSAGE;
   }
 }

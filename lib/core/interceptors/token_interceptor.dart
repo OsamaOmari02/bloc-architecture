@@ -1,24 +1,23 @@
-
 import "dart:developer";
 
-import "package:bloc_architecture/core/dio_errors/no_internet_exception.dart";
 import "package:bloc_architecture/core/services/shared_pref_service.dart";
 import "package:dio/dio.dart";
 
-import "../../data/constants/other_constants.dart";
-import "../dio_errors/bad_request_exception.dart";
-import "../dio_errors/conflict_exception.dart";
-import "../dio_errors/deadline_exceeded_exception.dart";
-import "../dio_errors/internal_server_exception.dart";
-import "../dio_errors/not_found_exception.dart";
-import "../dio_errors/unauthorized_exception.dart";
+import "../constants/other_constants.dart";
+import "../dio_exceptions/bad_request_exception.dart";
+import "../dio_exceptions/conflict_exception.dart";
+import "../dio_exceptions/deadline_exceeded_exception.dart";
+import "../dio_exceptions/internal_server_exception.dart";
+import "../dio_exceptions/no_internet_exception.dart";
+import "../dio_exceptions/not_found_exception.dart";
+import "../dio_exceptions/unauthorized_exception.dart";
 
 class TokenInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final String token = SharedPrefService.getString(TOKEN) ?? "";
     options.headers['Authorization'] = 'Bearer $token';
-    log("data = ${options.data}");
+    log("data = ${options.data.toString()}");
     super.onRequest(options, handler);
   }
 
@@ -42,11 +41,16 @@ class TokenInterceptor extends Interceptor {
       case DioErrorType.response:
         switch (err.response?.statusCode) {
           case 400:
-            throw BadRequestException(err.requestOptions,res['errors']?[0] ?? res['error']);
+            throw BadRequestException(
+                err.requestOptions, res['errors']?[0] ?? res['error']);
           case 401:
-            throw UnauthorizedException(err.requestOptions,res['errors']?[0] ?? res['error']);
+            throw UnauthorizedException(
+                err.requestOptions, res['errors']?[0] ?? res['error']);
           case 404:
             throw NotFoundException(err.requestOptions);
+          case 406:
+            throw BadRequestException(
+                err.requestOptions, res['errors']?[0] ?? res['error']);
           case 409:
             throw ConflictException(err.requestOptions);
           case 500:

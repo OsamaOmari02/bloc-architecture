@@ -41,6 +41,11 @@ dependencies:
   flutter_local_notifications:
   dio_http_cache_lts:
   permission_handler: ^10.2.0
+  flutter_native_image:
+  video_compress:
+  firebase_core:
+  firebase_crashlytics:
+  upgrader: ^6.5.0
 dev_dependencies:
   hive_generator:
   build_runner:

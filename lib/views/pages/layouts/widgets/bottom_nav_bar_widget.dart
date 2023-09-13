@@ -4,6 +4,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../shared/utlis/media_query_util.dart';
 import '../../home/home_page.dart';
+import '../../settings/settings_page.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   BottomNavigationBarWidget({Key? key}) : super(key: key);
@@ -51,17 +52,17 @@ class BottomNavigationBarWidget extends StatelessWidget {
         //   activeColorPrimary: lightFirstColor,
         //   inactiveColorPrimary: Colors.grey,
         // ),
-        // PersistentBottomNavBarItem(
-        //   icon: const Icon(Icons.settings_outlined),
-        //   title: "Settings",
-        //   activeColorPrimary: lightFirstColor,
-        //   inactiveColorPrimary: Colors.grey,
-        // ),
+        PersistentBottomNavBarItem(
+          icon: const Icon(Icons.settings_outlined),
+          title: "Settings",
+          activeColorPrimary: lightFirstColor,
+          inactiveColorPrimary: Colors.grey,
+        ),
       ];
 
   final List<Widget> _navBarPages = [
     const HomePage(),
     // const ProfilePage(),
-    // const SettingsPage(),
+    const SettingsPage(),
   ];
 }

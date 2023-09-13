@@ -2,9 +2,9 @@
 
 const String ACCEPT_PROPOSAL = 'هل أنت متأكد من قبول هذا العرض ؟';
 const String REJECT_PROPOSAL = 'هل أنت متأكد من رفض هذا العرض ؟';
-const String DELETE_ACCOUNT = 'هل أنت متأكد من حذف الحساب ؟';
-const String LOGOUT = 'هل أنت متأكد من تسجيل الخروج ؟';
-const String DELETE_POST = 'هل أنت متأكد من حذف المنشور ؟';
+const String SURE_DELETE_ACCOUNT = 'هل أنت متأكد من حذف الحساب ؟';
+const String SURE_LOGOUT = 'هل أنت متأكد من تسجيل الخروج ؟';
+const String SURE_DELETE_POST = 'هل أنت متأكد من حذف المنشور ؟';
 
 const String REGISTER_SUCCESS_MESSAGE = "تم إنشاء الحساب بنجاح";
 const String EDIT_MY_PROFILE_SUCCESS_MESSAGE = 'تم تعديل ملفك الشخصي بنجاح';

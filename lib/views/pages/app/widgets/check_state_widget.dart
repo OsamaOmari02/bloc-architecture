@@ -1,7 +1,8 @@
 import 'package:bloc_architecture/views/pages/home/home_page.dart';
+import 'package:bloc_architecture/views/pages/layouts/layouts.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../auth_pages/signin/signin_page.dart';
+import '../../auth/signin/signin_page.dart';
 
 
 class CheckState extends StatelessWidget {
@@ -10,8 +11,9 @@ class CheckState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const LayoutsPage();
     if (token!=null) {
-      return const HomePage();
+      return const LayoutsPage();
     }
     return const SignInPage();
   }
