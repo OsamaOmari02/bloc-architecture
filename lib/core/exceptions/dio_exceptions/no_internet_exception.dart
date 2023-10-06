@@ -1,5 +1,6 @@
-import 'package:bloc_architecture/core/strings/failures_messages.dart';
 import 'package:dio/dio.dart';
+
+import '../../strings/failures_messages.dart';
 
 class NoInternetConnectionException extends DioError {
   NoInternetConnectionException(RequestOptions r) : super(requestOptions: r);

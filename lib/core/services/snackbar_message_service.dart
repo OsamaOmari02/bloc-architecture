@@ -1,5 +1,5 @@
 import 'package:bloc_architecture/views/shared/components/text_widget.dart';
-import 'package:bloc_architecture/views/shared/utlis/media_query_util.dart';
+import 'package:bloc_architecture/views/shared/utils/media_query_util.dart';
 import 'package:flutter/material.dart';
 
 class SnackBarMessageService {

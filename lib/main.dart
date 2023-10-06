@@ -13,6 +13,10 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  // firebase init
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // FirebaseCrashlyticsService.init();
+
   // init methods
   await SharedPrefService.init();
   DioClient.init();

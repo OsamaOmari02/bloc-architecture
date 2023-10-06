@@ -1,8 +1,8 @@
-import 'package:bloc_architecture/core/services/nivagation_service.dart';
+import 'package:bloc_architecture/core/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../views/shared/themes/light_theme.dart';
-import '../../views/shared/utlis/media_query_util.dart';
+import '../../views/shared/utils/media_query_util.dart';
 
 class AlertDialogService {
   static Future<String?>? showBasicAlertDialog({

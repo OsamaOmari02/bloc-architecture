@@ -1,9 +1,12 @@
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import '../exceptions/other_exceptions/file_max_size_exceeded_exception.dart';
+import '../validations/files_validations.dart';
 
 class FilesPickerService {
   static final ImagePicker _imagePicker = ImagePicker();
@@ -17,12 +20,17 @@ class FilesPickerService {
           maxWidth: 640,
           imageQuality: 50);
       if (takenPhoto != null) {
-        return takenPhoto.path;
+        final File pickedFile = File(takenPhoto.path);
+        if (pickedFile.lengthSync() <= FilesValidations.maxImageSize) {
+          return takenPhoto.path;
+        } else {
+          throw FileMaxSizeExceededException();
+        }
       }
     } on PlatformException {
       openAppSettings();
     } catch (e) {
-      log(e.toString());
+      return null;
     }
     return null;
   }
@@ -32,20 +40,29 @@ class FilesPickerService {
     try {
       final result = await _filePicker.pickFiles(
         allowMultiple: true,
-        type: FileType.custom,
-        allowedExtensions: ['bmp', 'jpg', 'jpeg', 'png', 'mp4', 'mov'],
+        type: FileType.media,
       );
       if (result == null) {
         return null;
       }
       for (PlatformFile file in result.files) {
-        files.add(file.path);
+        if (FilesValidations.isImage(file.extension) &&
+            file.size <= FilesValidations.maxImageSize) {
+          files.add(file.path);
+        } else if (FilesValidations.isVideo(file.extension) &&
+            file.size <= FilesValidations.maxVideoSize) {
+          files.add(file.path);
+        } else {
+          throw FileMaxSizeExceededException();
+        }
       }
       return files;
     } on PlatformException {
       openAppSettings();
+    } on FileMaxSizeExceededException {
+      rethrow;
     } catch (e) {
-      log(e.toString());
+      return null;
     }
     return null;
   }

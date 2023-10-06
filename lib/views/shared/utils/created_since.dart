@@ -1,6 +1,6 @@
 
 
-String createdAt(String createdAt) {
+String createdSince(String createdAt) {
   final DateTime dateTimeCreatedAt = DateTime.parse(createdAt);
   final Duration durationSinceCreated = DateTime.now().difference(dateTimeCreatedAt);
   if (durationSinceCreated.inDays > 0) {

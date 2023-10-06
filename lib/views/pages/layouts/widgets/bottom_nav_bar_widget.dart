@@ -2,7 +2,7 @@ import 'package:bloc_architecture/views/shared/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-import '../../../shared/utlis/media_query_util.dart';
+import '../../../shared/utils/media_query_util.dart';
 import '../../home/home_page.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {

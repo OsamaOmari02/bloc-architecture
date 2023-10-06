@@ -2,7 +2,7 @@ import 'package:bloc_architecture/views/shared/components/cached_network_image_w
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../utlis/media_query_util.dart';
+import '../utils/media_query_util.dart';
 
 class ImagesAndVideosSliderWidget extends StatelessWidget {
   const ImagesAndVideosSliderWidget({

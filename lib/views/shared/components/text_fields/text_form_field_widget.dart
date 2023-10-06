@@ -1,30 +1,28 @@
 import 'package:bloc_architecture/views/shared/components/text_widget.dart';
 import 'package:bloc_architecture/views/shared/themes/light_theme.dart';
-import 'package:bloc_architecture/views/shared/utlis/media_query_util.dart';
+import 'package:bloc_architecture/views/shared/utils/media_query_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 class TextFormFieldWidget extends StatelessWidget {
   const TextFormFieldWidget(
       {Key? key,
-      this.controller,
-      required this.keyboardType,
-      this.hintText,
-      this.labelText,
-      this.validator,
-      this.fillColor,
-      this.maxLength,
-      this.suffixIcon,
-      this.onIconPressed,
-      this.prefixIcon,
-      this.enabled = true,
-      this.isMultiLines = false,
-      this.isPassword = false,
-      this.height,
-      this.border,
-      this.autoFocus = false,
-      this.onChanged})
+        this.controller,
+        required this.keyboardType,
+        this.hintText,
+        this.labelText,
+        this.validator,
+        this.fillColor,
+        this.maxLength,
+        this.suffixIcon,
+        this.onIconPressed,
+        this.prefixIcon,
+        this.enabled = true,
+        this.isMultiLines = false,
+        this.isPassword = false,
+        this.height,
+        this.border,
+        this.autoFocus = false,
+        this.onChanged})
       : super(key: key);
   final TextEditingController? controller;
   final String? hintText;
@@ -49,12 +47,13 @@ class TextFormFieldWidget extends StatelessWidget {
     return SizedBox(
       height: height,
       child: TextFormField(
+        onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
         enabled: enabled,
         controller: controller,
         autofocus: autoFocus,
         onChanged: onChanged,
         textAlignVertical:
-            isMultiLines ? TextAlignVertical.top : TextAlignVertical.center,
+        isMultiLines ? TextAlignVertical.top : TextAlignVertical.center,
         keyboardType: keyboardType,
         validator: validator,
         expands: isMultiLines,
@@ -71,10 +70,10 @@ class TextFormFieldWidget extends StatelessWidget {
           prefixIcon: prefixIcon == null
               ? null
               : Icon(
-                  prefixIcon,
-                  size: getHeight(context) * 0.025,
-                  color: Colors.black45,
-                ),
+            prefixIcon,
+            size: getHeight(context) * 0.025,
+            color: Colors.black45,
+          ),
           suffixIcon: InkWell(
               onTap: onIconPressed,
               child: Icon(suffixIcon,
@@ -82,7 +81,7 @@ class TextFormFieldWidget extends StatelessWidget {
                   color: Colors.black45)),
           filled: true,
           hintText: hintText,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
               color: Colors.black45),
           label: TextWidget(
               text: labelText ?? "",
@@ -96,28 +95,28 @@ class TextFormFieldWidget extends StatelessWidget {
                 color: border == null ? Colors.grey : fillColor!,
                 width: border ?? 0.5),
             borderRadius:
-                BorderRadius.all(Radius.circular(getHeight(context) * 0.01)),
+            BorderRadius.all(Radius.circular(getHeight(context) * 0.01)),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: border == null ? Colors.grey : fillColor!,
                 width: border ?? 0.5),
             borderRadius:
-                BorderRadius.all(Radius.circular(getHeight(context) * 0.01)),
+            BorderRadius.all(Radius.circular(getHeight(context) * 0.01)),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: border == null ? Colors.grey : fillColor!,
                 width: border ?? 0.5),
             borderRadius:
-                BorderRadius.all(Radius.circular(getHeight(context) * 0.01)),
+            BorderRadius.all(Radius.circular(getHeight(context) * 0.01)),
           ),
           disabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: border == null ? Colors.grey : fillColor!,
                 width: border ?? 0.5),
             borderRadius:
-                BorderRadius.all(Radius.circular(getHeight(context) * 0.01)),
+            BorderRadius.all(Radius.circular(getHeight(context) * 0.01)),
           ),
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utlis/media_query_util.dart';
+import '../utils/media_query_util.dart';
 import 'text_widget.dart';
 
 class InfoRowWidget extends StatelessWidget {

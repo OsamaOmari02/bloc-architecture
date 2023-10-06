@@ -6,11 +6,6 @@ class LayoutsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: BottomNavigationBarWidget(),
-      ),
-    );
+    return BottomNavigationBarWidget();
   }
 }

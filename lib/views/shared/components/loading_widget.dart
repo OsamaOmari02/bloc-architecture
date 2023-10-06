@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utlis/media_query_util.dart';
+import '../utils/media_query_util.dart';
 
 
 class LoadingWidget extends StatelessWidget {
