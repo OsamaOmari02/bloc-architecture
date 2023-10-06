@@ -5,7 +5,7 @@ import 'package:video_player/video_player.dart';
 import '../../../../core/services/navigation_service.dart';
 import '../../themes/light_theme.dart';
 import '../../utils/media_query_util.dart';
-import '../../utils/thme_mode_config.dart';
+import '../../utils/theme_mode_config.dart';
 
 class FullScreenMode extends StatefulWidget {
   const FullScreenMode({

@@ -22,15 +22,15 @@ class HomePage extends StatelessWidget {
           },
           builder: (context, state) {
             if (state is LoginLoadingState) {
-              return const Text('loading');
+              return const Text('loading...');
             } else {
-              return const Text('success');
+              return const Text('(; Thank me later');
             }
           },
         ),
       ),
       floatingActionButton: FloatingActionButtonWidget(
-          title: 'login',
+          title: 'test',
           onPressed: () => context.read<AuthBloc>().add(LoginEvent(
               context: context, email: 'email', password: 'password'))),
     );

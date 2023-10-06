@@ -1,10 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_architecture/core/network/dio_client.dart';
 import 'package:bloc_architecture/views/pages/app/app.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/adapters.dart';
 
+import 'core/constants/other_constants.dart';
 import 'core/services/bloc_observer.dart';
+import 'core/services/firebase_crashlytics_service.dart';
 import 'core/services/shared_pref_service.dart';
 
 void main() async {
@@ -13,15 +17,17 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  // firebase init
+  // init methods
+
+  // add firebase_options file first
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // FirebaseCrashlyticsService.init();
-
-  // init methods
   await SharedPrefService.init();
+  final String? token = SharedPrefService.getString(ACCESS_TOKEN);
+  await Hive.initFlutter();
+  // Hive.registerAdapter(MyProfileHiveAdapter());
+  // await Hive.openBox<MyProfileHive>(MY_DATA);
   DioClient.init();
   Bloc.observer = MyBlocObserver();
-  runApp(const App(token: ''));
+  runApp(App(token: token));
 }
-
-

@@ -9,7 +9,7 @@ import '../../shared/themes/dark_theme.dart';
 import '../../shared/themes/light_theme.dart';
 
 class App extends StatelessWidget {
-  const App({super.key,required this.token});
+  const App({super.key, required this.token});
 
   final String? token;
 

@@ -105,10 +105,6 @@ const String REVIEWING = 'قيد المراجعة';
 const String NO_ACCEPTED_PROPOSALS_YET = 'لا يوجد عروض تم قبولها';
 const String NO_PENDING_PROPOSALS_YET = 'لا يوجد عروض قيد المراجعة';
 
-// notifications
-const String NOTIFICATIONS = 'الإشعارات';
-const String NO_NOTIFICATIONS_YET = 'لا يوجد إشعارات';
-
 //ratings
 const String RATINGS = 'الآراء والتقييمات';
 const String RATE_USER = 'تقييم المستخدم';
@@ -149,4 +145,5 @@ const String USER_FOLLOWED_YOU = 'الآن يتابعك';
 const String USER_MADE_A_PROPOSAL = 'قدم لك عرض';
 const String POST_AUTHOR_ACCEPTED_YOUR_PROPOSAL = 'وافق على العرض الذي قمت بتقديمه';
 const String POST_AUTHOR_REJECTED_YOUR_PROPOSAL = 'رفض العرض الذي قمت بتقديمه';
-
+const String NOTIFICATIONS = 'الإشعارات';
+const String NO_NOTIFICATIONS_YET = 'لا يوجد إشعارات';

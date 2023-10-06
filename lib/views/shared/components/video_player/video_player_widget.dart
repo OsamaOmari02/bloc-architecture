@@ -16,6 +16,7 @@ class VideoPlayerWidget extends StatefulWidget {
 }
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
+  // use cached_video_player if it's not outdated
   late VideoPlayerController controller;
   bool isError = false;
 

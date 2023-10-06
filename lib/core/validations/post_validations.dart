@@ -6,11 +6,11 @@ class PostValidations {
     return 'أدخل اسم سيارة صحيح';
   }
 
-  static String? carPartNameValidation(String value) {
+  static String? carPartTypeValidation(String value) {
     if (value.isNotEmpty && value.length <= 180) {
       return null;
     }
-    return 'أدخل اسم جزء سيارة صحيح';
+    return 'أدخل نوع قطعة سيارة صحيح';
   }
 
   static String? carModelValidation(String value) {
@@ -41,7 +41,9 @@ class PostValidations {
   static String? manufacturingYearValidation(String value) {
     if (value.isNotEmpty && !value.contains('-') && !value.contains(' ')) {
       int number = int.parse(value);
-      if (!number.isNegative && value.length == 4 && number.compareTo(DateTime.now().year+1).isNegative) {
+      if (!number.isNegative &&
+          value.length == 4 &&
+          number.compareTo(DateTime.now().year + 1).isNegative) {
         return null;
       }
       return 'أدخل سنة تصنيع صحيحة';
@@ -59,4 +61,17 @@ class PostValidations {
     return 'أدخل سعر صحيح';
   }
 
+  static String? vehicleIdNumberValidation(String value) {
+    if (value.length == 17) {
+      return null;
+    }
+    return 'أدخل رقم شاصي مكون من ١٧ خانة';
+  }
+
+  static String? engineCapacityValidation(String value) {
+    if (value.length >= 3 && value.length <= 15) {
+      return null;
+    }
+    return 'أدخل سعة محرك صحيحة';
+  }
 }

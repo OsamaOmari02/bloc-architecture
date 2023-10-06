@@ -3,8 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../../data/constants/api_constants.dart';
+import '../constants/api_constants.dart';
 import '../interceptors/token_interceptor.dart';
+import '../services/dio_cache_service.dart';
 
 class DioClient {
   static final Dio _dio = Dio();
@@ -20,17 +21,18 @@ class DioClient {
         'Content-Type': 'application/json',
         'Accept-Language': 'ar'
       }
-      ..interceptors.add(TokenInterceptor());
+      ..interceptors.add(TokenInterceptor())
+      ..interceptors.add(DioCacheService.cacheManager.interceptor);
   }
 
   // Get:-----------------------------------------------------------------------
   static Future<Response> get(
-      String url, {
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+    String url, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.get(
@@ -48,14 +50,14 @@ class DioClient {
 
   // Delete:--------------------------------------------------------------------
   static Future<dynamic> delete(
-      String url, {
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+    String url, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.delete(
@@ -73,14 +75,14 @@ class DioClient {
 
   // Post:----------------------------------------------------------------------
   static Future<Response> post(
-      String url, {
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+    String url, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.post(
@@ -100,14 +102,14 @@ class DioClient {
 
   // Put:-----------------------------------------------------------------------
   static Future<Response> put(
-      String url, {
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+    String url, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.put(
@@ -127,14 +129,14 @@ class DioClient {
 
   // Patch:---------------------------------------------------------------------
   static Future<Response> patch(
-      String url, {
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+    String url, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       await InternetConnectionService.checkConnectivity();
       final Response response = await _dio.patch(

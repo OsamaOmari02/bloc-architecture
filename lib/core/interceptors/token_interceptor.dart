@@ -42,9 +42,11 @@ class TokenInterceptor extends Interceptor {
       case DioErrorType.response:
         switch (err.response?.statusCode) {
           case 400:
-            throw BadRequestException(err.requestOptions,res['errors']?[0] ?? res['error']);
+            throw BadRequestException(
+                err.requestOptions, res['errors']?[0] ?? res['error']);
           case 401:
-            throw UnauthorizedException(err.requestOptions,res['errors']?[0] ?? res['error']);
+            throw UnauthorizedException(
+                err.requestOptions, res['errors']?[0] ?? res['error']);
           case 404:
             throw NotFoundException(err.requestOptions);
           case 406:
