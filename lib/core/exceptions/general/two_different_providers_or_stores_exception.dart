@@ -1,0 +1,1 @@
+class TwoDifferentProvidersOrStoresException implements Exception {}

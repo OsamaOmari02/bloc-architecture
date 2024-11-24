@@ -1,36 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ToastMessageService {
-  static void showSuccessToastMessage(
-      {required BuildContext context, required String msg}) {
-    ToastContext().init(context);
-    Toast.show(
-      msg,
-      duration: Toast.lengthShort,
-      gravity: Toast.bottom,
+  ToastMessageService._();
+  static void showSuccessMessage(String msg) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
       backgroundColor: Colors.green,
-    );
-  }
-  static void showErrorToastMessage(
-      {required BuildContext context, required String msg}) {
-    ToastContext().init(context);
-    Toast.show(
-      msg,
-      duration: Toast.lengthShort,
-      gravity: Toast.bottom,
-      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      timeInSecForIosWeb: 5,
     );
   }
 
-  static void showWarningToastMessage(
-      {required BuildContext context, required String msg}) {
-    ToastContext().init(context);
-    Toast.show(
-      msg,
-      duration: Toast.lengthShort,
-      gravity: Toast.bottom,
-      backgroundColor: Colors.orangeAccent,
+  static void showErrorMessage(String msg) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      timeInSecForIosWeb: 5,
+    );
+  }
+
+  static void showWarningMessage(String msg) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.amber,
+      textColor: Colors.white,
+      timeInSecForIosWeb: 5,
     );
   }
 }

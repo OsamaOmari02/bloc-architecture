@@ -1,0 +1,1 @@
+class FilesMaxNumberExceededException implements Exception {}

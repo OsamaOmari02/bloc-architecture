@@ -1,28 +1,39 @@
-import 'package:bloc_architecture/core/network/network_info.dart';
+import 'package:bloc_architecture/core/interceptors/dio_error_handler_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../constants/api_constants.dart';
-import '../interceptors/token_interceptor.dart';
-import '../services/dio_cache_service.dart';
+import '../interceptors/retry_interceptor.dart';
+import '../interceptors/headers_interceptor.dart';
+import '../services/internet_connection_service.dart';
 
 class DioClient {
   static final Dio _dio = Dio();
+  static final cacheOptions = CacheOptions(
+    store: MemCacheStore(),
+    maxStale: const Duration(minutes: 20),
+  );
 
   static void init() {
     _dio
-      ..options.baseUrl = APIEndPoints.baseUrl
-      ..options.connectTimeout = APIEndPoints.connectionTimeout
-      ..options.receiveTimeout = APIEndPoints.receiveTimeout
-      ..options.sendTimeout = APIEndPoints.sendTimeout
+      ..options.baseUrl = APIConstants.baseUrl
+      ..options.connectTimeout = APIConstants.connectionTimeout
+      ..options.receiveTimeout = APIConstants.receiveTimeout
+      ..options.sendTimeout = APIConstants.sendTimeout
       ..options.responseType = ResponseType.json
-      ..options.headers = {
-        'Content-Type': 'application/json',
-        'Accept-Language': 'ar'
-      }
-      ..interceptors.add(TokenInterceptor())
-      ..interceptors.add(DioCacheService.cacheManager.interceptor);
+      ..options.headers = {'Content-Type': 'application/json'}
+      ..interceptors.addAll([
+        HeadersInterceptor(),
+        RetryInterceptor(_dio),
+        DioErrorHandlerInterceptor(),
+        PrettyDioLogger(
+          request: true,
+          requestBody: true,
+          responseBody: true,
+          error: true,
+        ),
+        DioCacheInterceptor(options: cacheOptions),
+      ]);
   }
 
   // Get:-----------------------------------------------------------------------
@@ -33,23 +44,19 @@ class DioClient {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
-    try {
-      await InternetConnectionService.checkConnectivity();
-      final Response response = await _dio.get(
-        url,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return _returnResponse(response as http.Response);
-    } catch (e) {
-      rethrow;
-    }
+    await InternetConnectionService.checkConnectivity();
+    final Response response = await _dio.get(
+      url,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+      onReceiveProgress: onReceiveProgress,
+    );
+    return response;
   }
 
   // Delete:--------------------------------------------------------------------
-  static Future<dynamic> delete(
+  static Future<Response> delete(
     String url, {
     data,
     Map<String, dynamic>? queryParameters,
@@ -58,19 +65,15 @@ class DioClient {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    try {
-      await InternetConnectionService.checkConnectivity();
-      final Response response = await _dio.delete(
-        url,
-        data: data,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-      );
-      return _returnResponse(response as http.Response);
-    } catch (e) {
-      rethrow;
-    }
+    await InternetConnectionService.checkConnectivity();
+    final Response response = await _dio.delete(
+      url,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+    );
+    return response;
   }
 
   // Post:----------------------------------------------------------------------
@@ -83,21 +86,17 @@ class DioClient {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    try {
-      await InternetConnectionService.checkConnectivity();
-      final Response response = await _dio.post(
-        url,
-        data: data,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return _returnResponse(response as http.Response);
-    } catch (e) {
-      rethrow;
-    }
+    await InternetConnectionService.checkConnectivity();
+    final Response response = await _dio.post(
+      url,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+    return response;
   }
 
   // Put:-----------------------------------------------------------------------
@@ -110,21 +109,17 @@ class DioClient {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    try {
-      await InternetConnectionService.checkConnectivity();
-      final Response response = await _dio.put(
-        url,
-        data: data,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return _returnResponse(response as http.Response);
-    } catch (e) {
-      rethrow;
-    }
+    await InternetConnectionService.checkConnectivity();
+    final Response response = await _dio.put(
+      url,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+    return response;
   }
 
   // Patch:---------------------------------------------------------------------
@@ -137,24 +132,16 @@ class DioClient {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    try {
-      await InternetConnectionService.checkConnectivity();
-      final Response response = await _dio.patch(
-        url,
-        data: data,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return _returnResponse(response as http.Response);
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  static dynamic _returnResponse(http.Response response) {
-    return json.decode(response.body.toString());
+    await InternetConnectionService.checkConnectivity();
+    final Response response = await _dio.patch(
+      url,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+    return response;
   }
 }

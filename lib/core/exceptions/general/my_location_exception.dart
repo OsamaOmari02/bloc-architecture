@@ -1,0 +1,1 @@
+class MyLocationException implements Exception {}
